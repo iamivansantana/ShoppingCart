@@ -3,7 +3,9 @@ import React from 'react'
 const SearchScreen = () => {
     return (
         <>
-        <h1>Pantalla Buscar</h1>  
+            <div className="secction1">
+                <h2 style={{textAlign:'center'}}>Search</h2>  
+            </div>
         </>
     )
 }

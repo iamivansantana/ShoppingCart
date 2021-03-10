@@ -1,9 +1,18 @@
-import React from 'react'
+import React from 'react';
+import ListArticles from '../articles/ListArticles';
+
 
 const MenuScreen = () => {
+
+        
     return (
         <div>
-            <h1>hola mundo</h1>
+            <div className="secction1">
+            <h2 style={{textAlign:'center'}}>Catalogue</h2>
+                <div className="items-cont">
+                    <ListArticles />
+                </div>
+            </div>
         </div>
     )
 }
