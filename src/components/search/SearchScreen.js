@@ -4,7 +4,7 @@ const SearchScreen = () => {
     return (
         <>
             <div className="secction1">
-                <h2 style={{textAlign:'center'}}>Search</h2>  
+                <h2 style={{textAlign:'center',fontWeight:'lighter'}}>SEARCH</h2>  
             </div>
         </>
     )
