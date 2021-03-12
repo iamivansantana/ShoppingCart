@@ -6,14 +6,14 @@ const NavBar = ({ history }) => {
 
     //metodo que se ejecuta al hacer clic en el boton return.
    const handleReturn = ()=>{
-       
+         
     // //condiciona si el historial de navegacion es menor igual a 2 hal hacer clic te agrega al path '/'.
-    //    if (history.length <= 1) {
-    //        history.push('/menu');
-    //    }else{
-    //         //Si el tamaño del historial es mayor te lleva a la pagina anterior.
-    //         history.goBack();
-    //    }
+    // if (history.length <= 2) {
+    //     history.push('/');
+    // }else{
+    //      //Si el tamaño del historial es mayor te lleva a la pagina anterior.
+    //      history.goBack();
+    // }
    }
 
     return (

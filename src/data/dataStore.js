@@ -1,10 +1,10 @@
 export const articulos = [
     {
-        'id': 'nike-pg-5',
-        'name':'PG 5', 
-        'price':100, 
+        'id': 'nike-LeBron-18-Low-Neon-Nights',
+        'name':'LeBron 18 Low Neon Nights', 
+        'price':172.24, 
         'size':['28','29','30'],
-        'description':'Paul George tiene un juego fluido, natural, constante y fiable. Se toma su tiempo, pero siempre está bien posicionado para hacer el pase extra, hacer un corte en la zona o lograr un tiro con salto. El PG 5 combina el perfil bajo ágil que le gusta a Paul con la amortiguación flexible Nike Air Zoom Strobel. La unidad Air de largo completo se cose directamente en la parte superior, lo que brinda una amortiguación suave y elástica justo debajo del pie, perfecta para que PG siga sintiendo que se mueve sobre nubes.'
+        'description':'La calle es el escenario del LeBron Low, un calzado diseñado para darle a LeBron la sensación contenida y conectada que le gusta, pero con más movilidad en el tobillo. Inspirado en la energía colorida del horizonte nocturno de la ciudad, el LeBron 18 Low "Neon Nights" luce una combinación audaz de rosa cálido y azul fresco. El marco de corte bajo es resistente y ligero, y cuenta con un sistema de amortiguación suave y eficaz que todo atleta* puede experimentar en la cancha y más allá. El lanzamiento se conecta con una colección estacional de prendas de Nike Básquetbol que cuentan con un esquema de color neón coincidente.'
     },
     {
         'id': 'nike-Air-Force-1',
@@ -42,11 +42,11 @@ export const articulos = [
         'description':'Nada más ligero, nada más cómodo, nada más probado: el Nike Air Max 3 se mantiene fiel a sus raíces originales con la icónica suela tipo wafle, los revestimientos cosidos y los detalles clásicos de TPU. Los colores frescos le dan un look moderno, al tiempo que la amortiguación Max Air agrega comodidad a tu camino.'
     },
     {
-        'id': 'nike-Quest3',
-        'name':'Quest 3', 
-        'price':79.78, 
+        'id': 'LeBron-17-Fire-Red',
+        'name':'LeBron 17 Fire Red', 
+        'price':239.00, 
         'size':['28','29','30'],
-        'description':'El Nike Quest 3 brinda versatilidad funcional para corredores comprometidos. Su diseño sencillo cuenta con capas de material que ofrecen comodidad y seguridad. La mayor altura de la espuma ofrece una mayor capacidad de respuesta para lograr más comodidad en cada kilómetro.'
+        'description':'El juego de LeBron es una obra de arte. Inspirada en la LeBron IV "Grafitti", la codiciada camiseta inspirada en Nueva York, la LeBron 17 "Fire Red" lleva la estética influenciada por el arte callejero del esquema de colores original en llamativos tonos rojos. Para los jugadores que ven el juego como un lienzo, este calzado ofrece una confección ligera combinada con un diseño inspirado en el ritmo, el arte y la cultura de las calles de la ciudad de Nueva York.'
     },
     {
         'id': 'nike-Adapt-Auto-Max',
