@@ -11,10 +11,10 @@ const ArticlesCard = ({ articulo }) => {
                     <Link to={`./sneaker/${ articulo.id }`} className='btn'>
                         <div className="item-card">
                                 <div className='tittle-down'>
-                                    <spam style={{color:'black'}}>{articulo.name}</spam><br />
-                                    <spam style={{color:'rgb(3, 185, 185)'}} >USD $ {articulo.price}</spam>                    
+                                    <span style={{color:'black'}}>{articulo.name}</span><br />
+                                    <span style={{color:'rgb(3, 185, 185)'}} >USD $ {articulo.price}</span>                    
                                 </div>
-                                <img src={`./assets/sneakers/${articulo.id}-0.jpg`} height='140%' className='center' alt={articulo.name} />
+                                <img loading="lazy" src={`./assets/sneakers/${articulo.id}-0.jpg`} height='140%' className='center' alt={articulo.name} />
                         </div>   
                     </Link>
              

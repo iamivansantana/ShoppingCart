@@ -21,14 +21,10 @@ const NavBar = ({ history }) => {
         <div className="navbar-fixed">
             <nav className="navbar">   
                 <div className="navbar-left">
-                    <button 
-                        className="btn-none"
-                        style={{textDecoration:'none'}}
-                        onClick={handleReturn}
-                    >
-                       <i className="fa fa-chevron-left icon"></i>
-                        
-                    </button>
+                    
+                        <Link to="/menu" className="btn-none" style={{textDecoration:'none'}}>
+                            <i className="fa fa-home icon"></i>
+                        </Link>
                 </div>
 
                 <div className="navbar-center">

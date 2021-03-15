@@ -28,34 +28,86 @@ const ArticlesScreen = ({ history }) => {
    const[uno,dos,tres]=size;
 
    //metodo que se ejecuta al hacer clic en el boton return.
-   const handleReturn = ()=>{
+//    const handleReturn = ()=>{
        
-    //condiciona si el historial de navegacion es menor igual a 2 hal hacer clic te agrega al path '/'.
-       if (history.length <= 2) {
-           history.push('/');
-       }else{
-            //Si el tamaño del historial es mayor te lleva a la pagina anterior.
-            history.goBack();
-       }
-   }
+//     //condiciona si el historial de navegacion es menor igual a 2 hal hacer clic te agrega al path '/'.
+//        if (history.length <= 2) {
+//            history.push('/');
+//        }else{
+//             //Si el tamaño del historial es mayor te lleva a la pagina anterior.
+//             history.goBack();
+//        }
+//    }
 
     
     return (
         <>
             <div className="secction1">
                 <div className="left">
-                    
+                    <div className="slider">
+                        <img loading="lazy" id="img1" src={`/assets/sneakers/${id}-0.jpg`} alt={`${name}`}/>
+                        <img loading="lazy" id="img2"src={`/assets/sneakers/${id}-1.jpg`} alt={`${name}`}/>
+                        <img loading="lazy" id="img4"src={`/assets/sneakers/${id}-3.jpg`} alt={`${name}`}/>
+                        <img loading="lazy" id="img5"src={`/assets/sneakers/${id}-4.jpg`} alt={`${name}`}/>
+                    </div>
+                    <div className="secction-img-menu">
+                        <ul className="secction-img">
+                            <li className="img-link"> 
+                                <a href="#img1">
+                                    <img loading="lazy" src={`/assets/sneakers/${id}-0.jpg`} alt={`${name}`} width='100%' style={{marginTop:'-12px'}}/>
+                                </a>
+                            </li>
+                            <li className="img-link"> 
+                                <a href="#img2">
+                                    <img loading="lazy" src={`/assets/sneakers/${id}-1.jpg`} alt={`${name}`} width='100%' style={{marginTop:'-12px'}}/>
+                                </a>
+                            </li>
+                            <li className="img-link"> 
+                                <a href="#img4">
+                                    <img loading="lazy" src={`/assets/sneakers/${id}-3.jpg`} alt={`${name}`} width='100%' style={{marginTop:'-12px'}}/>
+                                </a>
+                            </li>
+                            <li className="img-link">
+                                <a href="#img5">
+                                    <img loading="lazy" src={`/assets/sneakers/${id}-4.jpg`} alt={`${name}`} width='100%' style={{marginTop:'-12px'}}/>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div className="right">
-               
+                    <div className="contenedor">
+                        <div className="tittle">
+                            <span>{name}</span>
+                        </div>
+                        <div className="price">
+                            <span>USD ${price}</span>
+                        </div>
+                        <form>
+                            <span>size:</span>
+                            <div className="sizes">    
+                                <select required>
+                                    <option value="n/a" selected>
+                                        Seleccionar
+                                    </option>
+                                    <option value={uno}>
+                                        {uno} cm
+                                    </option>
+                                    <option value={dos}>
+                                        {dos} cm
+                                    </option>
+                                    <option value={tres} >
+                                        {tres} cm
+                                    </option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                   
+                    
                 </div> 
                 <div>
-                    <spam>{name}</spam><br />
-                    <spam>{price}</spam><br />
-                    <spam>{uno}</spam><br />
-                    <spam>{dos}</spam><br />
-                    <spam>{tres}</spam><br />
-                    <spam>{description}</spam>
+                <span>{description}</span>
                 </div>                   
             </div>  
         </>

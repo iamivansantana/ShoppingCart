@@ -11,6 +11,7 @@ import NavBar from '../components/navbar/NavBar';
 import SearchScreen from '../components/search/SearchScreen';
 import CartScreen from '../components/cart/CartScreen';
 import ArticlesScreen from '../components/articles/ArticlesScreen';
+import ScrollToTop from './ScrollToTop';
 
 
 
@@ -22,6 +23,7 @@ const AppRoute = () => {
         <Router>
             <NavBar />
             <div>
+                <ScrollToTop />
                 <Switch>
                     <Route exact path="/menu" component={ MenuScreen }/>
                     <Route exact path="/search" component={ SearchScreen }/>
