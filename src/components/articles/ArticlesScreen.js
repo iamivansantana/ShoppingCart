@@ -107,7 +107,7 @@ const ArticlesScreen = ({ history }) => {
                     
                 </div> 
                 <div>
-                <span>{description}</span>
+                <span style={{textAlign:'center'}}>{description}</span>
                 </div>                   
             </div>  
         </>
