@@ -29,6 +29,28 @@ code {
   font-family: 'Anton', sans-serif;
   font-size: 2rem;
 }
+
+.sizes{
+  padding-top: 2rem;
+  padding-left: 1rem;
+  font-family: 'Anton', sans-serif;
+}
+.qty{
+  padding-top: 1rem;
+  padding-left: 1rem;
+  font-family: 'Anton', sans-serif;
+}
+.sizes select{
+  background: transparent;
+  border-radius: 5px;
+  font-family: 'Anton', sans-serif;
+  font-size: 14px;
+  height: 40px;
+  width: 20%;
+}
+.quantity{
+  padding-left: 1rem;
+}
 /* ********************************* */
 
 .navbar-fixed{
@@ -229,6 +251,58 @@ code {
 }
 /* ************************************* */
 
+.btn-qty{
+  width: 2rem;
+  height: 2rem;
+  background-color: rgb(14, 37, 58);
+  color: #F5F5F5;
+  border:none;
+  border-radius: 3px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.num-qty{
+  width: 12%;
+  height: 2rem;
+  background-color: #F5F5F5;
+  color: rgb(14, 37, 58);
+  border:none;
+  text-align: center;
+  border-radius: 3px;
+  font-size: 16px;
+  
+}
+.cont-add{
+  padding-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+.btn-add{
+  background-color: rgb(2, 207, 207);
+  width: 80%;
+  height: 3rem;
+  color: rgb(14, 37, 58);
+  border: none;
+  border-radius: 7px;
+  font-family: 'Anton', sans-serif;
+  font-size: 20px;
+}
+.btn-add:hover{
+  cursor: pointer;
+  background-color: rgb(3, 182, 182);
+}
+.down{
+  display: block;
+  margin-top: 3rem;
+  width: 100%;
+}
+.cont-desc{
+  margin-left: 10%;
+  width: 80%;
+  text-align: center;
+  color: rgb(121, 121, 121);
+}
+
 
 /* ------------------------------------------------------------------------------------------------------------- */
 @media (max-width:956px){
@@ -306,15 +380,20 @@ code {
   .img-link:hover{
     transform: scale(1);
   }
+  
   /* **********LETRAS************ */
 .tittle{
-  padding-left: 0rem;
   padding-top: 1.5rem;
   line-height: 4rem;
   font-size: 3rem;
 }
-.price{
-  padding-left: 0rem;
+.down{
+  position: relative;
+  float: left;
+}
+.sizes select{
+  height: 30px;
+  width: 35%;
 }
 /* ********************************* */
   

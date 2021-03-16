@@ -1,8 +1,10 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react';
 import { Redirect, useParams } from 'react-router';
 import { getArticleById } from '../../selectors/getArticleById';
 
 const ArticlesScreen = ({ history }) => {
+    //Counter quantity.
+    const[counter,setCounter] = useState(0); 
     
     //se utiliza el hook useParams() para obtener/acceder a los parametros del path
     //se desestructura heroeId
@@ -39,6 +41,24 @@ const ArticlesScreen = ({ history }) => {
 //        }
 //    }
 
+   
+
+    //Reset
+    // const handleReset = ()=>{
+    //     setCounter(0);  
+    // }
+    //handleAdd
+    const handleAdd = (e)=>{
+        e.preventDefault();
+        setCounter(counter + 1);  
+        // setCounter((c)=>c+1);
+    }
+    //handleMenos o handleSubtrack
+    const handleSubtrack = (e)=>{
+        e.preventDefault();
+        setCounter(counter - 1);  
+        
+    }
     
     return (
         <>
@@ -84,11 +104,11 @@ const ArticlesScreen = ({ history }) => {
                             <span>USD ${price}</span>
                         </div>
                         <form>
-                            <span>size:</span>
+                            
                             <div className="sizes">    
                                 <select required>
                                     <option value="n/a" selected>
-                                        Seleccionar
+                                        Size:
                                     </option>
                                     <option value={uno}>
                                         {uno} cm
@@ -101,14 +121,32 @@ const ArticlesScreen = ({ history }) => {
                                     </option>
                                 </select>
                             </div>
+                            <div className="qty">
+                                <span>Quantity:</span>
+                            </div>
+                            <div className="quantity">
+                                {/* <button onClick={handleReset}>Reset</button> */}
+                                <button className="btn-qty" onClick={handleSubtrack}>-1</button>
+                                <input className="num-qty" type="text" value={counter} disabled/>
+                                <button className="btn-qty" onClick={handleAdd}>+1</button>
+                                
+                            </div>
+                            <div className="cont-add">
+                                <input className="btn-add" type="submit" name="add" value="Add to ShopingCart." />
+                            </div>
                         </form>
                     </div>
                    
                     
                 </div> 
-                <div>
-                <span style={{textAlign:'center'}}>{description}</span>
-                </div>                   
+                <div className="down">
+                    <div className="cont-desc">
+                            <div className="desc">
+                                <h3>Description:</h3>
+                                <p>{description}</p>
+                            </div>
+                    </div>                   
+                </div>
             </div>  
         </>
     )
