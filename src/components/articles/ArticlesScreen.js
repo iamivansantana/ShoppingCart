@@ -1,63 +1,84 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Redirect, useParams } from 'react-router';
+import { useForm } from '../../hooks/useForm';
 import { getArticleById } from '../../selectors/getArticleById';
 
+
+
 const ArticlesScreen = ({ history }) => {
-    //Counter quantity.
-    const[counter,setCounter] = useState(0); 
+
+    //useForm
+    const initialForm = {
+        productId:'',
+        productName:'',
+        productPrice:0,
+        productSize:0,
+        productQuantity:0
+        }
     
-    //se utiliza el hook useParams() para obtener/acceder a los parametros del path
-    //se desestructura heroeId
-    const { sneakerId } = useParams();
+        const [ formValues, handleInputChange,setValues ] = useForm( initialForm );
 
-    //se utiliza el metodo getHeroById() mandando el articuloId y que retorna el listado de los articulos que coinciden con el id mandado.
-   //se utiliza el hook useMemo para guardar el resultado del listado de los articulos que retorna el metodo getHeroById() y que solo cambia con el [sneackerId]
-   const sneaker = useMemo(() => getArticleById(sneakerId), [sneakerId]);
+        const{productQuantity,productSize}=formValues;
+        
+        
+        
+        //se utiliza el hook useParams() para obtener/acceder a los parametros del path
+        //se desestructura heroeId
+        const { sneakerId } = useParams();
 
+        
+        //se utiliza el metodo getHeroById() mandando el articuloId y que retorna el listado de los articulos que coinciden con el id mandado.
+        //se utiliza el hook useMemo para guardar el resultado del listado de los articulos que retorna el metodo getHeroById() y que solo cambia con el [sneackerId]
+        const sneaker = useMemo(() => getArticleById(sneakerId), [sneakerId]);        
 
-   //si el hero no existe o retorna false se redirecciona al path '/'
-   if(!sneaker) return <Redirect to="/" />
+        //si el hero no existe o retorna false se redirecciona al path '/'
+        if(!sneaker) return <Redirect to="/" />
+        
+        //se desestructuran las propiedades deseadas de sneaker.
+        const {
+            id,
+            name,
+            price,
+            size,
+            description
+        } = sneaker;
+        
+        //dessestructuracion de size
+        const[uno,dos,tres]=size;
+        
 
-   //se desestructuran las propiedades deseadas de hero.
-   const {
-    id,
-    name,
-    price,
-    size,
-    description
-   } = sneaker;
-
-   const[uno,dos,tres]=size;
-
-   //metodo que se ejecuta al hacer clic en el boton return.
-//    const handleReturn = ()=>{
-       
-//     //condiciona si el historial de navegacion es menor igual a 2 hal hacer clic te agrega al path '/'.
-//        if (history.length <= 2) {
-//            history.push('/');
-//        }else{
-//             //Si el tamaño del historial es mayor te lleva a la pagina anterior.
-//             history.goBack();
-//        }
-//    }
-
-   
-
-    //Reset
-    // const handleReset = ()=>{
-    //     setCounter(0);  
-    // }
     //handleAdd
     const handleAdd = (e)=>{
         e.preventDefault();
-        setCounter(counter + 1);  
-        // setCounter((c)=>c+1);
+        setValues({
+            ...formValues,
+            productQuantity: productQuantity + 1
+        });
+
     }
     //handleMenos o handleSubtrack
-    const handleSubtrack = (e)=>{
+    const handleSubtrack = ( e ) => {
         e.preventDefault();
-        setCounter(counter - 1);  
-        
+        setValues({
+            ...formValues,
+            productQuantity: productQuantity - 1
+        });   
+    }
+
+    //submit Formulario
+    const handleAddCart = ( e )=>{
+         e.preventDefault();  
+
+         if(productSize <= 0 || productQuantity <= 0 ){
+             return;
+         }
+
+         setValues({
+             ...formValues,
+             productId: id,
+             productPrice: price,
+             productName: name,
+         });
     }
     
     return (
@@ -74,22 +95,46 @@ const ArticlesScreen = ({ history }) => {
                         <ul className="secction-img">
                             <li className="img-link"> 
                                 <a href="#img1">
-                                    <img loading="lazy" src={`/assets/sneakers/${id}-0.jpg`} alt={`${name}`} width='100%' style={{marginTop:'-12px'}}/>
+                                    <img 
+                                        loading="lazy" 
+                                        src={`/assets/sneakers/${id}-0.jpg`} 
+                                        alt={`${name}`} 
+                                        width='100%' 
+                                        style={{marginTop:'-12px'}}
+                                    />
                                 </a>
                             </li>
                             <li className="img-link"> 
                                 <a href="#img2">
-                                    <img loading="lazy" src={`/assets/sneakers/${id}-1.jpg`} alt={`${name}`} width='100%' style={{marginTop:'-12px'}}/>
+                                    <img 
+                                        loading="lazy" 
+                                        src={`/assets/sneakers/${id}-1.jpg`} 
+                                        alt={`${name}`} 
+                                        width='100%' 
+                                        style={{marginTop:'-12px'}}
+                                    />
                                 </a>
                             </li>
                             <li className="img-link"> 
                                 <a href="#img4">
-                                    <img loading="lazy" src={`/assets/sneakers/${id}-3.jpg`} alt={`${name}`} width='100%' style={{marginTop:'-12px'}}/>
+                                    <img 
+                                        loading="lazy" 
+                                        src={`/assets/sneakers/${id}-3.jpg`} 
+                                        alt={`${name}`} 
+                                        width='100%' 
+                                        style={{marginTop:'-12px'}}
+                                    />
                                 </a>
                             </li>
                             <li className="img-link">
                                 <a href="#img5">
-                                    <img loading="lazy" src={`/assets/sneakers/${id}-4.jpg`} alt={`${name}`} width='100%' style={{marginTop:'-12px'}}/>
+                                    <img 
+                                        loading="lazy" 
+                                        src={`/assets/sneakers/${id}-4.jpg`} 
+                                        alt={`${name}`} 
+                                        width='100%' 
+                                        style={{marginTop:'-12px'}}
+                                    />
                                 </a>
                             </li>
                         </ul>
@@ -103,13 +148,14 @@ const ArticlesScreen = ({ history }) => {
                         <div className="price">
                             <span>USD ${price}</span>
                         </div>
-                        <form>
+
+                        <form onSubmit={handleAddCart}>
                             
                             <div className="sizes">    
-                                <select required>
-                                    <option value="n/a" selected>
-                                        Size:
-                                    </option>
+                                <select name="productSize" onChange={handleInputChange} >
+                                    <option defaultValue hidden> 
+                                        Size: 
+                                    </option> 
                                     <option value={uno}>
                                         {uno} cm
                                     </option>
@@ -121,18 +167,30 @@ const ArticlesScreen = ({ history }) => {
                                     </option>
                                 </select>
                             </div>
+
                             <div className="qty">
                                 <span>Quantity:</span>
                             </div>
-                            <div className="quantity">
-                                {/* <button onClick={handleReset}>Reset</button> */}
-                                <button className="btn-qty" onClick={handleSubtrack}>-1</button>
-                                <input className="num-qty" type="text" value={counter} disabled/>
-                                <button className="btn-qty" onClick={handleAdd}>+1</button>
+                            <div className="quantity">                                
+                                <button className="btn-qty" onClick={handleSubtrack}> -1 </button>
+                                <input 
+                                    type="number" 
+                                    className="num-qty" 
+                                    onChange={handleInputChange}  
+                                    name="productQuantity" 
+                                    value={productQuantity}
+                                    disabled
+                                />
+                                <button className="btn-qty" onClick={handleAdd}> +1 </button>
                                 
                             </div>
                             <div className="cont-add">
-                                <input className="btn-add" type="submit" name="add" value="Add to ShopingCart." />
+                                <input 
+                                    type="submit" 
+                                    className="btn-add" 
+                                    name="add" 
+                                    value="Add to ShopingCart."
+                                />
                             </div>
                         </form>
                     </div>
