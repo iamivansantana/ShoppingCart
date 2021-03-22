@@ -1,19 +1,24 @@
 import { types } from '../../types/types';
 
 
-export default (state, action)=>{
+ const articlesReducer = (state = [], action) => {
     switch (action.type) {
+        
+        case types.addShoppingCArt:
+            return [...state,
+                action.payload
+            ];
 
-       case types.addProduct:
-           return{
-                
-           }
-        case types.subtractProduct:
-            return{
-                
-            }
+        case types.updateQtyProduct:
+            return state.map(product=>
+                (product.productId === action.payload.id)
+                ?{...product, productQuantity: product.productQuantity + action.payload.qty}
+                :product
+                );
 
         default:
            return state;
     } 
 }
+
+export default articlesReducer;

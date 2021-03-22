@@ -1,50 +1,52 @@
-import React, { useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { Redirect, useParams } from 'react-router';
+import articlesContext from '../../context/articlesContext/articlesContext';
 import { useForm } from '../../hooks/useForm';
 import { getArticleById } from '../../selectors/getArticleById';
+import { types } from '../../types/types';
 
 
 
 const ArticlesScreen = ({ history }) => {
 
+    //Accede al context
+    const {cart,dispatch} = useContext(articlesContext);
+
     //useForm
     const initialForm = {
-        productId:'',
-        productName:'',
-        productPrice:0,
         productSize:0,
-        productQuantity:0
+        productQuantity:1
         }
     
-        const [ formValues, handleInputChange,setValues ] = useForm( initialForm );
+    const [ formValues, handleInputChange,setValues ] = useForm( initialForm );
 
-        const{productQuantity,productSize}=formValues;
-        
-        
-        
-        //se utiliza el hook useParams() para obtener/acceder a los parametros del path
-        //se desestructura heroeId
-        const { sneakerId } = useParams();
+    const{productQuantity,productSize}=formValues;
+    
+    
+    
+    //se utiliza el hook useParams() para obtener/acceder a los parametros del path
+    //se desestructura heroeId
+    const { sneakerId } = useParams();
 
-        
-        //se utiliza el metodo getHeroById() mandando el articuloId y que retorna el listado de los articulos que coinciden con el id mandado.
-        //se utiliza el hook useMemo para guardar el resultado del listado de los articulos que retorna el metodo getHeroById() y que solo cambia con el [sneackerId]
-        const sneaker = useMemo(() => getArticleById(sneakerId), [sneakerId]);        
+    
+    //se utiliza el metodo getHeroById() mandando el articuloId y que retorna el listado de los articulos que coinciden con el id mandado.
+    //se utiliza el hook useMemo para guardar el resultado del listado de los articulos que retorna el metodo getHeroById() y que solo cambia con el [sneackerId]
+    const sneaker = useMemo(() => getArticleById(sneakerId), [sneakerId]);        
 
-        //si el hero no existe o retorna false se redirecciona al path '/'
-        if(!sneaker) return <Redirect to="/" />
-        
-        //se desestructuran las propiedades deseadas de sneaker.
-        const {
-            id,
-            name,
-            price,
-            size,
-            description
-        } = sneaker;
-        
-        //dessestructuracion de size
-        const[uno,dos,tres]=size;
+    //si el hero no existe o retorna false se redirecciona al path '/'
+    if(!sneaker) return <Redirect to="/" />
+    
+    //se desestructuran las propiedades deseadas de sneaker.
+    const {
+        id,
+        name,
+        price,
+        size,
+        description
+    } = sneaker;
+    
+    //dessestructuracion de size
+    const[uno,dos,tres]=size;
         
 
     //handleAdd
@@ -65,20 +67,43 @@ const ArticlesScreen = ({ history }) => {
         });   
     }
 
+    const newArticle={
+        productId:id,
+        productName:name,
+        productPrice:price,
+        productSize:productSize,
+        productQuantity:productQuantity
+    };
+
+
     //submit Formulario
     const handleAddCart = ( e )=>{
          e.preventDefault();  
 
          if(productSize <= 0 || productQuantity <= 0 ){
+             console.log('elija una talla y un cantidad valida');
              return;
          }
 
-         setValues({
-             ...formValues,
-             productId: id,
-             productPrice: price,
-             productName: name,
-         });
+         // checks whether an element is exist
+        const exist = cart.some((element) => element.productId === id);
+
+        if (exist) {
+            dispatch({
+                type: types.updateQtyProduct,
+                payload: {
+                    id: id,
+                    qty: productQuantity
+                }
+            });
+            console.log('add exit');
+        } else {
+            dispatch({
+                type: types.addShoppingCArt,
+                payload: newArticle
+            });
+            console.log('product added');
+        }
     }
     
     return (
@@ -210,4 +235,4 @@ const ArticlesScreen = ({ history }) => {
     )
 }
 
-export default ArticlesScreen
+export default ArticlesScreen;
