@@ -9,7 +9,9 @@ import { types } from '../../types/types';
                 action.payload
             ];
 
+
         case types.updateQtyProduct:
+        case types.addProduct:
             return state.map(product=>
                 (product.productId === action.payload.id)
                 ?{...product, productQuantity: product.productQuantity + action.payload.qty}

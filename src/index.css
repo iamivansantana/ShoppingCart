@@ -117,6 +117,16 @@ code {
   min-height:57%;
   
 }
+.cart-cont{
+  position: relative;
+  top: 3%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: transparent;
+  width: 100%;
+  min-height:57%;
+  
+}
 .container-grid{
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
@@ -267,15 +277,14 @@ code {
   cursor: pointer;
 }
 .num-qty{
-  width: 12%;
+  width: 3rem;
   height: 2rem;
   background-color: #F5F5F5;
   color: rgb(14, 37, 58);
   border:none;
   text-align: center;
   border-radius: 3px;
-  font-size: 16px;
-  
+  font-size: 16px; 
 }
 .cont-add{
   padding-top: 3rem;
@@ -296,11 +305,6 @@ code {
   cursor: pointer;
   background-color: rgb(3, 182, 182);
 }
-.down{
-  display: block;
-  margin-top: 3rem;
-  width: 100%;
-}
 .cont-desc{
   margin-left: 10%;
   width: 80%;
@@ -310,15 +314,67 @@ code {
 .product-card{
   position: relative;
   width: 100%;
-  height: 200px;
-  background-color: aqua;
-  
+  height: 150px;
+}
+.product-card-left{
+  float: left;
+  width: 40%;
+  height: 100%;
+}
+.product-card-right{
+  float: left;
+  width: 60%;
+  height: 100%;
+}
+.product-card-img{
+  width: 50%;
+  height: 100%;
+  margin-left: 50%;
+  transform: translate(-50%);
+  overflow: hidden;
+}
+.up{
+  width: 100%;
+  height: 40%;
+}
+.down{
+  width: 100%;
+  height: 60%;
+}
+.down-left{
+  position: relative;
+  float: left;
+  width: 60%;
+  height: 100%;
+}
+.down-right{
+  position: relative;
+  float: left;
+  width: 40%;
+  height: 100%;
 }
 
 
 
 /* ------------------------------------------------------------------------------------------------------------- */
 @media (max-width:956px){
+  .product-card{
+    height: 100px;
+
+  }
+  .product-card-img{
+    width: 100%;
+  }
+  .product-card-left{
+    float: left;
+    width: 28%;
+    height: 100%;
+  }
+  .product-card-right{
+    float: left;
+    width: 72%;
+    height: 100%;
+  }
   .secction1{
     background-color: transparent;
     position: relative;
@@ -419,5 +475,10 @@ code {
       
       width: 80%;
       
+    }
+    .cart-cont{
+      
+      width: 65%;
+
     }
   }

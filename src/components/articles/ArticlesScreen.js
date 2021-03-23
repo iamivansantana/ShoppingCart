@@ -96,13 +96,22 @@ const ArticlesScreen = ({ history }) => {
                     qty: productQuantity
                 }
             });
-            console.log('add exit');
+            console.log('add successfull');
+            setValues({
+                ...formValues,
+                productQuantity: 1
+            });  
+
         } else {
             dispatch({
                 type: types.addShoppingCArt,
                 payload: newArticle
             });
             console.log('product added');
+            setValues({
+                ...formValues,
+                productQuantity: 1
+            });
         }
     }
     

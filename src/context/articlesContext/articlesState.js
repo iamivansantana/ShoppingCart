@@ -1,6 +1,7 @@
-import React, { useEffect, useReducer } from 'react'
-import articlesContext from './articlesContext'
-import articlesReducer from './articlesReducer'
+import React, { useEffect, useReducer } from 'react';
+import articlesContext from './articlesContext';
+import articlesReducer from './articlesReducer';
+
 
     //init es utilizado por el useReducer como estado inicial.
     const init = ()=>{
@@ -18,14 +19,23 @@ const ArticlesState = ( props ) => {
     }, [cart]);
 
     
-    //Funciones:
+//Funciones:
+    // //handleAddProduct
+    // const handleAddProduct = id=>{
+    
+    //     dispatch({
+    //         type: types.addProduct,
+    //         payload: id
+    //     })
+    // }
 
 
     return (
         <articlesContext.Provider
          value={{
             dispatch,
-            cart
+            cart,
+            
 
          }}
         >
