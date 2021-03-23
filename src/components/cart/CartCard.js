@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import articlesContext from '../../context/articlesContext/articlesContext';
 
 const CartCard = ({ product }) => {
-    // const { handleAddProduct } = useContext(articlesContext);
+
+    const { addProduct,subtraktProduct} = useContext(articlesContext);
+
+
+//Funciones
+
+    const hanldeAddOne = (e)=>{
+        e.preventDefault();
+
+        addProduct(product.productId);
+    }
+    const hanldeSubtraktOne = (e)=>{
+        e.preventDefault();
+
+        subtraktProduct(product.productId);
+    }
 
 
     return (
@@ -25,7 +41,8 @@ const CartCard = ({ product }) => {
                         <div className="down-left">
                             
                             <div  style={{paddingLeft:'0rem',paddingTop:'1rem'}}>                                
-                                <button className="btn-qty"> -1 </button>
+                                
+                                <button className="btn-qty" onClick={hanldeSubtraktOne} > -1 </button>
                                 <input 
                                     type="number" 
                                     className="num-qty" 
@@ -33,7 +50,7 @@ const CartCard = ({ product }) => {
                                     value={product.productQuantity}
                                     disabled
                                 />
-                                <button className="btn-qty"> +1 </button>
+                                <button className="btn-qty" onClick={hanldeAddOne}> +1 </button>
                                 
                             </div>
                         </div>

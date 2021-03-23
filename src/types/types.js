@@ -1,8 +1,9 @@
 export const types = {
 
+    addShoppingCArt: '[Cart] Add',
     addProduct: '[Product] Add',
     subtractProduct: '[Product] Subtract',
-    addShoppingCArt: '[Cart] Add',
     updateQtyProduct: '[Product] UpdateQty',
+    deleteProduct: '[Product] Delete',
 
 }

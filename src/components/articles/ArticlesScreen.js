@@ -1,17 +1,16 @@
 import React, { useContext, useMemo } from 'react';
 import { Redirect, useParams } from 'react-router';
 import articlesContext from '../../context/articlesContext/articlesContext';
-import { useForm } from '../../hooks/useForm';
 import { getArticleById } from '../../selectors/getArticleById';
-import { types } from '../../types/types';
+import {useForm} from '../../hooks/useForm'
 
 
 
 const ArticlesScreen = ({ history }) => {
 
     //Accede al context
-    const {cart,dispatch} = useContext(articlesContext);
-
+    const {cart,addExit,addNew} = useContext(articlesContext); 
+    
     //useForm
     const initialForm = {
         productSize:0,
@@ -21,7 +20,6 @@ const ArticlesScreen = ({ history }) => {
     const [ formValues, handleInputChange,setValues ] = useForm( initialForm );
 
     const{productQuantity,productSize}=formValues;
-    
     
     
     //se utiliza el hook useParams() para obtener/acceder a los parametros del path
@@ -48,24 +46,7 @@ const ArticlesScreen = ({ history }) => {
     //dessestructuracion de size
     const[uno,dos,tres]=size;
         
-
-    //handleAdd
-    const handleAdd = (e)=>{
-        e.preventDefault();
-        setValues({
-            ...formValues,
-            productQuantity: productQuantity + 1
-        });
-
-    }
-    //handleMenos o handleSubtrack
-    const handleSubtrack = ( e ) => {
-        e.preventDefault();
-        setValues({
-            ...formValues,
-            productQuantity: productQuantity - 1
-        });   
-    }
+    
 
     const newArticle={
         productId:id,
@@ -75,45 +56,58 @@ const ArticlesScreen = ({ history }) => {
         productQuantity:productQuantity
     };
 
+//Funciones
+    
+    //handleAdd
+    const handleAdd = (e)=>{
+        e.preventDefault();
+        setValues({
+            ...formValues,
+            productQuantity: productQuantity + 1
+        });
+    }
+    
+    //handleMenos o handleSubtrack
+    const handleSubtrack = ( e ) => {
+        e.preventDefault();
+        setValues({
+            ...formValues,
+            productQuantity: productQuantity - 1
+        });   
+    }
 
     //submit Formulario
     const handleAddCart = ( e )=>{
-         e.preventDefault();  
+        e.preventDefault();
+        
 
-         if(productSize <= 0 || productQuantity <= 0 ){
-             console.log('elija una talla y un cantidad valida');
-             return;
-         }
-
-         // checks whether an element is exist
-        const exist = cart.some((element) => element.productId === id);
-
-        if (exist) {
-            dispatch({
-                type: types.updateQtyProduct,
-                payload: {
-                    id: id,
-                    qty: productQuantity
-                }
-            });
-            console.log('add successfull');
-            setValues({
-                ...formValues,
-                productQuantity: 1
-            });  
-
-        } else {
-            dispatch({
-                type: types.addShoppingCArt,
-                payload: newArticle
-            });
-            console.log('product added');
-            setValues({
-                ...formValues,
-                productQuantity: 1
-            });
+        if(productSize <= 0 || productQuantity <= 0 ){
+            console.log('elija una talla y un cantidad valida');
+            return;
         }
-    }
+
+        // checks whether an element is exist
+       const exist = cart.some((element) => element.productId === id);
+
+       if (exist) {
+            
+        
+            addExit(id,productQuantity);
+           
+           console.log('add successfull');
+           
+
+       } else {
+
+            addNew(newArticle);
+            
+           console.log('product added');
+           
+       }
+   }
+
+
+    
     
     return (
         <>
