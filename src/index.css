@@ -107,6 +107,21 @@ code {
     width: 100%;
     height: calc(100vh - 8rem); 
 }
+.secction2{
+  background-color: transparent;
+  position: relative;
+  padding: 4rem 0;
+  width: 100%;
+  height: auto; 
+}
+.secction3{
+  background-color: transparent;
+  position: relative;
+  padding: 4rem 0;
+  width: 100%;
+  height: calc(100vh - 8rem - 140px);
+  overflow: scroll; 
+}
 .items-cont{
   position: relative;
   top: 3%;
@@ -198,8 +213,7 @@ code {
   position: relative;
   float: left;
   width: 50%;
-  height: 85%;
-  background-color: #F5F5F5;
+  height: 550px;
 }
 .right{
   position: relative;
@@ -229,7 +243,7 @@ code {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
 
-  margin-top: 30%;
+  margin-top: 35%;
   margin-left: 50%;
   transform: translate(-50%,-30%);
 }
@@ -338,8 +352,12 @@ code {
   height: 40%;
 }
 .down{
+  /* width: 100%;
+  height: 60%; */
+  position: relative;
+ float: left;
   width: 100%;
-  height: 60%;
+  height: calc(15% + 4rem);
 }
 .down-left{
   position: relative;
@@ -353,11 +371,159 @@ code {
   width: 40%;
   height: 100%;
 }
+.mark-cart{
+  position: absolute;
+  margin-top: 15px;
+  margin-left: 25px;
+  width: 18px;
+  height: 18px;
+  color: #F5F5F5;
+  background-color: rgb(228, 6, 6);
+  border-radius: 50%;
+  font-size: .6rem;
+  font-weight: bolder;
+  text-align: center;
+  line-height: 18px;
+}
+.cover-page{
+  position: relative;
+  padding: 4rem 0;
+  width: 100%;
+  height: calc(100vh - 8rem); 
+  min-height: 600px;
+  color: #ffffff;
+  background:radial-gradient( circle, #45697e,#071720 ) ;
+  overflow: hidden;
+}
+.cover-background{
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-20%,-50%);
+  opacity: 4%;
+  z-index: 1;
+}
+.cover-img{
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-100%,-40%)rotate(-20deg);
+  animation: intro 1s 1 ;
+  animation-fill-mode: forwards;
+  z-index: 15;
+}
+@keyframes intro{
+  0%{
+    transform: translate(-300%,-40%)rotate(-20deg);
 
+  }
+  100%{
+    transform: translate(-100%,-40%)rotate(-20deg);
+  }
+}
+.cover-tittle{
+  position: relative;
+  color: #F5F5F5;
+  line-height: 7rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 8rem;
+  text-align: right;
+  margin-right: 2rem;
+  text-transform: uppercase;
+  z-index: 10;
+}
+.cover-sub{
+  position: absolute;
+  width: 30%;
+  right: 1%;
+  bottom: 30%;
+  z-index: 16;
+}
+.btn-size{
+  width: 2rem;
+  height: 2rem;
+  margin-right: 1rem;
+  background-color: rgb(6, 16, 49);
+  color: #F5F5F5;
+  border:none;
+  border-radius: 3px;
+  font-size: 16px;
+}
+.price-cover{
+  color: #03b9b9;
+  line-height: 2rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 4rem;
+  -webkit-text-stroke: .3px black;
+}
+.size-red{
+  position: relative;
+  border: 3px solid #d80000;
+}
+.size-red:focus{
+outline: none;
+}
+.btn-back{
+  position: absolute;
+  z-index: 10;
+}
+.div-btn-add{
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  height: 150px;
+  background-color: #0e253a;
+}
 
 
 /* ------------------------------------------------------------------------------------------------------------- */
 @media (max-width:956px){
+  .secction3{
+    
+    height: calc(100vh - 8rem - 206px);
+    
+  }
+  .btn-back{
+    margin-top: -70px;
+  }
+  .price-cover{
+    color: rgb(3, 185, 185);
+    line-height: 0rem;
+    font-family: 'Anton', sans-serif;
+    font-size: 2rem;
+  }
+  .cover-sub{
+    position: absolute;
+    width: 80%;
+    bottom: 5%;
+  
+  }
+  .cover-tittle{
+    position: relative;
+    font-size: 5rem;
+    line-height: 6rem;
+    
+  }
+  .cover-background{
+    width: 110%;
+    transform: translate(-60%,-40%);
+  }
+  .cover-img{
+    position: absolute;
+    width: 85%;
+    top: 40%;
+    left: 50%;
+  }
+  @keyframes intro{
+  0%{
+    transform: translate(-300%)rotate(-20deg);
+  }
+  100%{
+    transform: translate(-60%)rotate(-20deg);
+  }
+}
   .product-card{
     height: 100px;
 
@@ -382,6 +548,9 @@ code {
     width: 100%;
     height: auto;
 }
+  .shopcart{
+    top: 0rem;
+  }
   .navbar-left{
     width: 10vw;
   }
@@ -422,7 +591,7 @@ code {
     max-width: 500px;
     height: 500px;
     width: 100%;
-    margin-top: 0%;
+    margin-top: 10%;
   }
   .slider img{
     width: 100%;
@@ -470,6 +639,7 @@ code {
 
 /* ------------------------------------------------------------------------------------------------------------- */
   @media (min-width:1680px){
+    
     
     .items-cont{
       

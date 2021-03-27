@@ -21,6 +21,8 @@ const ArticlesScreen = ({ history }) => {
 
     const{productQuantity,productSize}=formValues;
     
+
+    
     
     //se utiliza el hook useParams() para obtener/acceder a los parametros del path
     //se desestructura heroeId
@@ -49,7 +51,7 @@ const ArticlesScreen = ({ history }) => {
     
 
     const newArticle={
-        productId:id,
+        productId:id+productSize,
         productName:name,
         productPrice:price,
         productSize:productSize,
@@ -65,15 +67,20 @@ const ArticlesScreen = ({ history }) => {
             ...formValues,
             productQuantity: productQuantity + 1
         });
+        
     }
     
     //handleMenos o handleSubtrack
     const handleSubtrack = ( e ) => {
         e.preventDefault();
-        setValues({
-            ...formValues,
-            productQuantity: productQuantity - 1
-        });   
+        if (productQuantity <= 1) {
+            return;
+        }else{
+            setValues({
+                ...formValues,
+                productQuantity: productQuantity - 1
+            });   
+        }
     }
 
     //submit Formulario
@@ -82,36 +89,64 @@ const ArticlesScreen = ({ history }) => {
         
 
         if(productSize <= 0 || productQuantity <= 0 ){
-            console.log('elija una talla y un cantidad valida');
+
+            const selectsize = document.getElementById('productSize');
+
+            if (document.querySelector("#productSize.size-red")) {
+                return;
+              } else {
+                selectsize.className += " size-red";
+                const errsize = document.getElementById('errorSize');
+                const msgerr = document.createTextNode('Select a option.');
+                errsize.appendChild(msgerr);
+              }
+            
             return;
         }
 
         // checks whether an element is exist
-       const exist = cart.some((element) => element.productId === id);
+       const exist = cart.some((element) => element.productId === id+productSize);
 
        if (exist) {
+            addExit(id+productSize,productQuantity);
             
-        
-            addExit(id,productQuantity);
-           
-           console.log('add successfull');
-           
-
+            alert('product added');
+            history.push('/cart');
        } else {
-
             addNew(newArticle);
-            
-           console.log('product added');
-           
+            // clickbotones();
+            alert('product added');
+            history.push('/cart');
+       }
+    
+       
+    }
+
+//metodo que se ejecuta al hacer clic en el boton return.
+const handleReturn = ()=>{
+       
+    //condiciona si el historial de navegacion es menor igual a 2 hal hacer clic te agrega al path '/'.
+       if (history.length <= 2) {
+           history.push('/');
+       }else{
+            //Si el tamaño del historial es mayor te lleva a la pagina anterior.
+            history.goBack();
        }
    }
-
-
     
     
     return (
         <>
-            <div className="secction1">
+            <div className="secction2">
+                  
+                <div className='btn-back'>
+                    <button
+                    className="btn-none"
+                    onClick={handleReturn}
+                    >
+                    <i className="fa fa-angle-double-left icon"></i><span>Back</span>
+                    </button>
+                </div>
                 <div className="left">
                     <div className="slider">
                         <img loading="lazy" id="img1" src={`/assets/sneakers/${id}-0.jpg`} alt={`${name}`}/>
@@ -124,7 +159,6 @@ const ArticlesScreen = ({ history }) => {
                             <li className="img-link"> 
                                 <a href="#img1">
                                     <img 
-                                        loading="lazy" 
                                         src={`/assets/sneakers/${id}-0.jpg`} 
                                         alt={`${name}`} 
                                         width='100%' 
@@ -135,7 +169,7 @@ const ArticlesScreen = ({ history }) => {
                             <li className="img-link"> 
                                 <a href="#img2">
                                     <img 
-                                        loading="lazy" 
+                                        
                                         src={`/assets/sneakers/${id}-1.jpg`} 
                                         alt={`${name}`} 
                                         width='100%' 
@@ -146,7 +180,6 @@ const ArticlesScreen = ({ history }) => {
                             <li className="img-link"> 
                                 <a href="#img4">
                                     <img 
-                                        loading="lazy" 
                                         src={`/assets/sneakers/${id}-3.jpg`} 
                                         alt={`${name}`} 
                                         width='100%' 
@@ -157,7 +190,6 @@ const ArticlesScreen = ({ history }) => {
                             <li className="img-link">
                                 <a href="#img5">
                                     <img 
-                                        loading="lazy" 
                                         src={`/assets/sneakers/${id}-4.jpg`} 
                                         alt={`${name}`} 
                                         width='100%' 
@@ -177,30 +209,31 @@ const ArticlesScreen = ({ history }) => {
                             <span>USD ${price}</span>
                         </div>
 
-                        <form onSubmit={handleAddCart}>
-                            
-                            <div className="sizes">    
-                                <select name="productSize" onChange={handleInputChange} >
-                                    <option defaultValue hidden> 
+                        <form onSubmit={handleAddCart} >
+                            <div  className="sizes">    
+                                
+                                <select id='productSize' name="productSize" onChange={handleInputChange} >
+                                    <option defaultValue hidden > 
                                         Size: 
                                     </option> 
-                                    <option value={uno}>
+                                    <option value={uno} >
                                         {uno} cm
                                     </option>
-                                    <option value={dos}>
+                                    <option value={dos} >
                                         {dos} cm
                                     </option>
                                     <option value={tres} >
                                         {tres} cm
                                     </option>
                                 </select>
+                                <span style={{color:'#d80000'}} id='errorSize'></span>
                             </div>
 
                             <div className="qty">
                                 <span>Quantity:</span>
                             </div>
                             <div className="quantity">                                
-                                <button className="btn-qty" onClick={handleSubtrack}> -1 </button>
+                                <button className="btn-qty" onClick={handleSubtrack}> - </button>
                                 <input 
                                     type="number" 
                                     className="num-qty" 
@@ -209,17 +242,19 @@ const ArticlesScreen = ({ history }) => {
                                     value={productQuantity}
                                     disabled
                                 />
-                                <button className="btn-qty" onClick={handleAdd}> +1 </button>
+                                <button className="btn-qty" onClick={handleAdd}> + </button>
                                 
                             </div>
+                            
                             <div className="cont-add">
                                 <input 
                                     type="submit" 
                                     className="btn-add" 
                                     name="add" 
                                     value="Add to ShopingCart."
-                                />
+                                    />
                             </div>
+                            
                         </form>
                     </div>
                    

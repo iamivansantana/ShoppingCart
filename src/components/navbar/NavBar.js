@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import articlesContext from '../../context/articlesContext/articlesContext';
 
 
 const NavBar = ({ history }) => {
 
+    const {cart} = useContext(articlesContext);
+
+    
+    const total = cart.reduce((accumulator, currentValue) => accumulator +=  currentValue.productQuantity,0);
     
 
     return (
@@ -29,6 +34,10 @@ const NavBar = ({ history }) => {
                             <i className="fa fa-search icon"></i>
                         </Link>
                         <Link to="/cart">
+                            {
+                                (total>0)?<span className='mark-cart'>{total}</span> : null
+                            }
+                            
                             <i className="fa fa-shopping-cart icon" ></i>
                         </Link>
                     </div>

@@ -5,6 +5,9 @@ const CartCard = ({ product }) => {
 
     const { addProduct,subtraktProduct} = useContext(articlesContext);
 
+    const id = product.productId;
+    let newID = id.substring(0, id.length - 2);
+
 
 //Funciones
 
@@ -25,7 +28,7 @@ const CartCard = ({ product }) => {
             <div className="product-card" >
                 <div className='product-card-left'>
                     <div className='product-card-img'>
-                        <img loading="lazy" src={`./assets/sneakers/${product.productId}-1.jpg`} width='70%' className='center' alt={product.productName} /> 
+                        <img loading="lazy" src={`./assets/sneakers/${newID}-1.jpg`} width='70%' className='center' alt={product.productId} /> 
                     </div>
                 </div>
                 <div className="product-card-right">
@@ -42,7 +45,7 @@ const CartCard = ({ product }) => {
                             
                             <div  style={{paddingLeft:'0rem',paddingTop:'1rem'}}>                                
                                 
-                                <button className="btn-qty" onClick={hanldeSubtraktOne} > -1 </button>
+                                <button className="btn-qty" onClick={hanldeSubtraktOne} > - </button>
                                 <input 
                                     type="number" 
                                     className="num-qty" 
@@ -50,13 +53,13 @@ const CartCard = ({ product }) => {
                                     value={product.productQuantity}
                                     disabled
                                 />
-                                <button className="btn-qty" onClick={hanldeAddOne}> +1 </button>
+                                <button className="btn-qty" onClick={hanldeAddOne}> + </button>
                                 
                             </div>
                         </div>
                         <div className="down-right">
                             <div style={{paddingTop:''}}>
-                                <h3 >$ {product.productPrice*product.productQuantity}</h3>       
+                                <h3 >$ {(product.productPrice*product.productQuantity).toFixed(2)}</h3>       
                             </div>
                         </div>
                     </div>
